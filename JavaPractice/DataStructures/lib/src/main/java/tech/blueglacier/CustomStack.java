@@ -17,4 +17,10 @@ public class CustomStack {
     public int pop() {
         return (int) this.stackArray.getLast();
     }
+    public int top(){
+        return (int) this.stackArray.getLast();
+    }
+    public int size(){
+        return (int) this.stackArray.size();
+    }
 }
