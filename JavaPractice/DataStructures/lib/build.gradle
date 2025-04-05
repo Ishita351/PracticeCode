@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(
+
+            [group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'],
+            [group: 'commons-io', name: 'commons-io', version: '2.18.0'],
+            [group: 'commons-configuration', name: 'commons-configuration', version: '1.10'],
+            [group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'],
+            [group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'],
+            [group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'],
+            [group: 'commons-collections', name: 'commons-collections', version: '3.2.2'],
+            [group: 'com.google.guava', name: 'guava', version: '33.4.6-jre']
+    )
+    testImplementation([group: 'org.testng', name: 'testng', version: '7.11.0'],
+            [group: 'org.mockito', name: 'mockito-core', version: '5.16.1'],
+            [group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'],
+            [group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'])
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+test {
+    useTestNG()
+    testLogging.showCauses = true;
+    testLogging.showExceptions = true;
+    testLogging.showStackTraces = true;
+    testLogging.showStandardStreams = true;
+    testLogging.exceptionFormat = 'full';
+    testLogging.events "started", "passed", "skipped", "failed", "standardOut", "standardError";
+}
+
+task copyDependencies(type: Copy) {
+    from configurations.runtimeClasspath
+    into 'build/dependencies'
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:deprecation"
+}
