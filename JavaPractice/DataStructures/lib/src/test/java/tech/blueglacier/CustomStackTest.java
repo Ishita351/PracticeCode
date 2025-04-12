@@ -28,28 +28,24 @@ public class CustomStackTest {
     }
 
     @Test
-    public void testOperation(){
+    public void testCustomStackSize(){
         CustomStack stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
-        stack.push(3);
-        stack.push(4);
         stack.push(5);
-        int poppedValue = stack.pop();
-        int sizeArray = stack.size();
-        Assert.assertEquals(sizeArray, 3);
+        stack.pop();
+        int stackSize = stack.size();
+        Assert.assertEquals(stackSize, 1);
     }
 
     @Test
-    public void testTop(){
+    public void testCustomStackSeek(){
         CustomStack stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
-        stack.push(3);
-        stack.push(4);
         stack.push(5);
-        int poppedValue = stack.pop();
-        int topArray = stack.top();
-        Assert.assertEquals(topArray, 4);
+        stack.pop();
+        int topCustomStack = stack.top();
+        Assert.assertEquals(topCustomStack, 1);
     }
 }
