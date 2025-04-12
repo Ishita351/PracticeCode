@@ -8,7 +8,7 @@ public class CustomStackTest {
 
     @Test
     public void testStackOperation() {
-        CustomStack stack = new CustomStack();
+        CustomStack<Integer> stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
         int poppedValue = stack.pop();
@@ -17,7 +17,7 @@ public class CustomStackTest {
 
     @Test
     public void testMultipleStackOperation() {
-        CustomStack stack = new CustomStack();
+        CustomStack<Integer> stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
         stack.push(3);
@@ -29,7 +29,7 @@ public class CustomStackTest {
 
     @Test
     public void testCustomStackSize(){
-        CustomStack stack = new CustomStack();
+        CustomStack<Integer> stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
         stack.push(5);
@@ -40,7 +40,7 @@ public class CustomStackTest {
 
     @Test
     public void testCustomStackSeek(){
-        CustomStack stack = new CustomStack();
+        CustomStack<Integer> stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
         stack.push(5);
@@ -48,4 +48,15 @@ public class CustomStackTest {
         int topCustomStack = stack.top();
         Assert.assertEquals(topCustomStack, 1);
     }
+    @Test
+    public void testCustomStackForString(){
+        CustomStack<String> stack = new CustomStack();
+        String pushedValue = "ishita";
+        stack.push(pushedValue);
+        stack.push("rishit");
+        stack.pop();
+        String topCustomStack = stack.top();
+        Assert.assertEquals(topCustomStack, "ishita");
+    }
+
 }
