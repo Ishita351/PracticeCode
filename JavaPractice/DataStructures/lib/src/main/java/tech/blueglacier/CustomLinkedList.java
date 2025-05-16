@@ -4,33 +4,32 @@ import java.util.Objects;
 
 public class CustomLinkedList {
     private Node head;
+    private int length;
 
     public CustomLinkedList() {
         this.head = null;
+        this.length = 0;
     }
 
     public void add(int i) {
         if (head == null) {
             head = new Node(i, null);
-            return;
         } else {
             Node iterationNode = head;
-//            if(iterationNode.getNext()== null ){
-//                Node tempNode = new Node(i,null);
-//                iterationNode.setNext(tempNode);
-//            }
             while (iterationNode.getNext() != null) {
                 iterationNode = iterationNode.getNext();
             }
             Node tempNode = new Node(i, null);
             iterationNode.setNext(tempNode);
         }
+        this.length++;
     }
 
     public void prePend(int i) {
         Node tempNode = new Node(i, null);
         tempNode.setNext(head);
         head = tempNode;
+        this.length++;
     }
 
 //    @Override
@@ -58,6 +57,34 @@ public class CustomLinkedList {
         }
         stringBuilder.append(iterationNode.getElement());
         return stringBuilder.toString();
+    }
+
+    public boolean insert(int index, int element) {
+        boolean insertResult = false;
+        Node iterationNode = this.head;
+        if (index >= this.getLength() || index < 0) {
+            insertResult = false;
+        } else if (index == 0) {
+            this.prePend(element);
+            insertResult = true;
+        } else {
+            Node nodeToInsert = new Node(element, null);
+            int i = 0;
+            while (i <= index - 1){
+                iterationNode = iterationNode.getNext();
+                i++;
+            }
+            Node tempNode = iterationNode.getNext();
+            iterationNode.setNext(nodeToInsert);
+            nodeToInsert.setNext(tempNode);
+            insertResult = true;
+            this.length++;
+        }
+        return insertResult;
+    }
+
+    public int getLength() {
+        return this.length;
     }
 
     public class Node {

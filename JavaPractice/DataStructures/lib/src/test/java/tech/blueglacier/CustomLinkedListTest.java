@@ -7,10 +7,15 @@ public class CustomLinkedListTest {
     public void testCustomLinkedList(){
         CustomLinkedList customLinkedList = new CustomLinkedList();
         customLinkedList.add(3);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.add(5);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.add(9);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.add(11);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.add(7);
+        System.out.println(customLinkedList.getLength());
         System.out.println("########################################");
         System.out.println(customLinkedList);
         System.out.println("########################################");
@@ -19,12 +24,49 @@ public class CustomLinkedListTest {
     public void testCustomLinkedListPrePend() {
         CustomLinkedList customLinkedList = new CustomLinkedList();
         customLinkedList.add(3);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.add(5);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.add(9);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.prePend(10);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.prePend(15);
+        System.out.println(customLinkedList.getLength());
         customLinkedList.prePend(18);
+        System.out.println(customLinkedList.getLength());
         System.out.println(customLinkedList);
+    }
+    @Test
+    public void testCustomLinkedListLength(){
+        CustomLinkedList customLinkedList = new CustomLinkedList();
+        customLinkedList.getLength();
+    }
+    @Test
+    public void testCustomLinkedListInsert(){
+        CustomLinkedList customLinkedList = new CustomLinkedList();
+        System.out.println(customLinkedList.insert(5,1));
+        System.out.println(customLinkedList.insert(-1,1));
+        System.out.println(customLinkedList.insert(0,7));
+        System.out.println(customLinkedList.getLength());
+        customLinkedList.add(6);
+        customLinkedList.add(10);
+        customLinkedList.add(15);
+        customLinkedList.add(18);
+        customLinkedList.add(20);
+        customLinkedList.add(22);
+        System.out.println(customLinkedList.getLength());
+        System.out.println(customLinkedList);
+        System.out.println(customLinkedList.insert(2,58));
+        System.out.println(customLinkedList);
+        System.out.println(customLinkedList.getLength());
+        System.out.println(customLinkedList.insert(6,62));
+
+        System.out.println(customLinkedList);
+        System.out.println(customLinkedList.getLength());
+        System.out.println(customLinkedList.insert(9,64));
+        System.out.println(customLinkedList);
+        System.out.println(customLinkedList.getLength());
     }
     @Test
     public void testJavaReferences(){

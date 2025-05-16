@@ -21,7 +21,8 @@ dependencies {
     testImplementation([group: 'org.testng', name: 'testng', version: '7.11.0'],
             [group: 'org.mockito', name: 'mockito-core', version: '5.16.1'],
             [group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'],
-            [group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'])
+            [group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'],
+            [group: 'junit', name: 'junit', version: '4.13.2'])
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
