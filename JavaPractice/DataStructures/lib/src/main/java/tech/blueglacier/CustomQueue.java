@@ -3,22 +3,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomQueue<T> {
-    public List<T> stackQueue;
+    public List<T> queueList;
 
     public CustomQueue() {
-        this.stackQueue = new ArrayList();
+        this.queueList = new ArrayList();
     }
 
     public void enqueue (T i) {
-        this.stackQueue.add(i);
+        this.queueList.add(i);
     }
 
     public T dequeue() {
-        return this.stackQueue.removeFirst();
+        return this.queueList.removeFirst();
     }
 
     public int size(){
-        return this.stackQueue.size();
+        return this.queueList.size();
     }
 }
 

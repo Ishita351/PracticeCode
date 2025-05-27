@@ -30,6 +30,23 @@ public class CustomLinkedList {
         return searchedElementIndex;
     }
 
+    public int read(int index) {
+        int indexToRead = -1;
+        Node iterationNode = this.head;
+        if (this.getLength() == 0) {
+            return indexToRead;
+        } else if (index > this.getLength() - 1 || index < 0) {
+            return indexToRead;
+        } else {
+            int i = 0;
+            while (i < index) {
+                iterationNode = iterationNode.getNext();
+                i++;
+            }
+        }
+        return iterationNode.getElement();
+    }
+
     public void add(int i) {
         if (head == null) {
             head = new Node(i, null);
@@ -51,23 +68,15 @@ public class CustomLinkedList {
         this.length++;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (!(o instanceof CustomLinkedList that)) return false;
-//        return Objects.equals(head, that.head);
-//    }
-
     @Override
     public int hashCode() {
         return Objects.hashCode(head);
-//        return 0x3423;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         Node iterationNode = head;
-//        stringBuilder.append(iterationNode.getElement());
 
         while (iterationNode.getNext() != null) {
             stringBuilder.append(iterationNode.getElement());
@@ -134,6 +143,38 @@ public class CustomLinkedList {
             this.length--;
         }
         return deleteResult;
+    }
+
+
+    public int removeLast() {
+        int elementToRemove = Integer.MIN_VALUE;
+
+        if (this.head != null) {
+            elementToRemove = this.head.getElement();
+        }
+        if (this.head != null && this.head.getNext() != null) {
+            this.head = this.head.getNext();
+        } else {
+            this.head = null;
+        }
+        this.length--;
+        return elementToRemove;
+    }
+
+    public int removeHead(){
+        int removedHeadElement;
+        if(this.head == null){
+            removedHeadElement = Integer.MIN_VALUE;
+            return removedHeadElement;
+        }else if(this.head.getNext()==null){
+            removedHeadElement = this.head.getElement();
+            this.head= null;
+        }else{
+            removedHeadElement = this.head.getElement();
+            this.head= this.head.getNext();
+        }
+        this.length--;
+        return removedHeadElement;
     }
 
     public class Node {

@@ -57,7 +57,8 @@ public class CustomLinkedListTest {
     @Test
     public void testCustomLinkedListLength() {
         CustomLinkedList customLinkedList = new CustomLinkedList();
-        customLinkedList.getLength();
+        Assert.assertEquals(customLinkedList.getLength(),0);
+
     }
 
     @Test
@@ -108,4 +109,21 @@ public class CustomLinkedListTest {
         Assert.assertEquals(customLinkedList.getLength() , 4);
     }
 
+    @Test
+    public void testCustomLinkedListRead(){
+        CustomLinkedList customLinkedList = new CustomLinkedList();
+        Assert.assertEquals(customLinkedList.read(3),-1);
+        customLinkedList.add(5);
+        customLinkedList.add(7);
+        Assert.assertEquals(customLinkedList.read(-3),-1);
+        Assert.assertEquals(customLinkedList.read(4),-1);
+        customLinkedList.add(9);
+        customLinkedList.add(3);
+        Assert.assertEquals(customLinkedList.read(2),9);
+        customLinkedList.add(31);
+        customLinkedList.add(35);
+        customLinkedList.add(13);
+        Assert.assertEquals(customLinkedList.read(6),13);
+        customLinkedList.add(18);
+    }
 }
