@@ -2,12 +2,14 @@ package tech.blueglacier;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tech.blueglacier.exceptions.EmptyStackException;
+import tech.blueglacier.exceptions.StackFullException;
 
 
 public class CustomStackTest {
 
     @Test
-    public void testStackOperation() {
+    public void testStackOperation() throws EmptyStackException , StackFullException {
         CustomStack<Integer> stack = new CustomStack();
         int pushedValue = 1;
         stack.push(pushedValue);
@@ -16,8 +18,19 @@ public class CustomStackTest {
     }
 
     @Test
-    public void testMultipleStackOperation() {
-        CustomStack<Integer> stack = new CustomStack();
+    public void testStackOperationWithCapacity() throws EmptyStackException , StackFullException {
+        int stackCapacity = 1;
+        CustomStack<Integer> stack = new CustomStack(stackCapacity);
+        int pushedValue = 1;
+        stack.push(pushedValue);
+        int poppedValue = stack.pop();
+        Assert.assertEquals(poppedValue, pushedValue);
+    }
+
+    @Test
+    public void testMultipleStackOperation() throws EmptyStackException ,  StackFullException{
+        int stackCapacity = 4;
+        CustomStack<Integer> stack = new CustomStack(stackCapacity);
         int pushedValue = 1;
         stack.push(pushedValue);
         stack.push(3);
@@ -28,8 +41,9 @@ public class CustomStackTest {
     }
 
     @Test
-    public void testCustomStackSize(){
-        CustomStack<Integer> stack = new CustomStack();
+    public void testCustomStackSize() throws EmptyStackException ,  StackFullException{
+        int stackCapacity = 2 ;
+        CustomStack<Integer> stack = new CustomStack(stackCapacity);
         int pushedValue = 1;
         stack.push(pushedValue);
         stack.push(5);
@@ -39,8 +53,9 @@ public class CustomStackTest {
     }
 
     @Test
-    public void testCustomStackSeek(){
-        CustomStack<Integer> stack = new CustomStack();
+    public void testCustomStackSeek() throws EmptyStackException ,  StackFullException{
+        int stackCapacity = 2;
+        CustomStack<Integer> stack = new CustomStack(stackCapacity);
         int pushedValue = 1;
         stack.push(pushedValue);
         stack.push(5);
@@ -49,8 +64,9 @@ public class CustomStackTest {
         Assert.assertEquals(topCustomStack, 1);
     }
     @Test
-    public void testCustomStackForString(){
-        CustomStack<String> stack = new CustomStack();
+    public void testCustomStackForString() throws EmptyStackException ,  StackFullException{
+        int stackCapacity = 2;
+        CustomStack<String> stack = new CustomStack(stackCapacity);
         String pushedValue = "ishita";
         stack.push(pushedValue);
         stack.push("rishit");
@@ -59,4 +75,27 @@ public class CustomStackTest {
         Assert.assertEquals(topCustomStack, "ishita");
     }
 
+    @Test(expectedExceptions = EmptyStackException.class)
+    public void testCustomStackEmptyException() throws EmptyStackException{
+        int stackCapacity = 1;
+        CustomStack<Integer> stack = new CustomStack<>(stackCapacity);
+        stack.pop();
+    }
+
+    @Test
+    public void testCustomStackSizeLimit(){
+        int stackCapacity = 1;
+        CustomStack<Integer> stack = new CustomStack<>(stackCapacity);
+    }
+
+    @Test(expectedExceptions =  StackFullException.class)
+    public void testCustomStackCapacityCheck() throws StackFullException{
+        int stackCapacity = 4;
+        CustomStack<Integer> stack = new CustomStack<>(stackCapacity);
+        stack.push(2);
+        stack.push(4);
+        stack.push(5);
+        stack.push(6);
+        stack.push(7);
+    }
 }

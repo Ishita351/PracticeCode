@@ -1,15 +1,27 @@
 package tech.blueglacier;
 
+import tech.blueglacier.exceptions.EmptyListException;
+import tech.blueglacier.exceptions.ListFullException;
+
 import java.util.Objects;
 
 public class CustomLinkedList {
     private Node head;
     private int length;
+    private int capacity;
 
     public CustomLinkedList() {
         this.head = null;
         this.length = 0;
+        this.capacity = Integer.MAX_VALUE;
     }
+
+    public CustomLinkedList(int capacity) {
+        this.head = null;
+        this.length = 0;
+        this.capacity = capacity;
+    }
+
 
     public int search(int element) {
         int searchedElementIndex = -1;
@@ -48,24 +60,32 @@ public class CustomLinkedList {
     }
 
     public void add(int i) {
-        if (head == null) {
-            head = new Node(i, null);
-        } else {
-            Node iterationNode = head;
-            while (iterationNode.getNext() != null) {
-                iterationNode = iterationNode.getNext();
+        if (this.getLength() < this.capacity) {
+            if (head == null) {
+                head = new Node(i, null);
+            } else {
+                Node iterationNode = head;
+                while (iterationNode.getNext() != null) {
+                    iterationNode = iterationNode.getNext();
+                }
+                Node tempNode = new Node(i, null);
+                iterationNode.setNext(tempNode);
             }
-            Node tempNode = new Node(i, null);
-            iterationNode.setNext(tempNode);
+            this.length++;
+        } else {
+            throw new ListFullException("list is full");
         }
-        this.length++;
     }
 
     public void prePend(int i) {
-        Node tempNode = new Node(i, null);
-        tempNode.setNext(head);
-        head = tempNode;
-        this.length++;
+        if (this.getLength() < this.capacity) {
+            Node tempNode = new Node(i, null);
+            tempNode.setNext(head);
+            head = tempNode;
+            this.length++;
+        } else {
+            throw new ListFullException("list is full");
+        }
     }
 
     @Override
@@ -95,7 +115,7 @@ public class CustomLinkedList {
             insertResult = true;
         } else if (index >= this.getLength() || index < 0) {
             insertResult = false;
-        } else {
+        } else if (this.getLength() < this.capacity) {
             Node nodeToInsert = new Node(element, null);
             int i = 0;
             while (i <= index - 1) {
@@ -107,6 +127,8 @@ public class CustomLinkedList {
             nodeToInsert.setNext(tempNode);
             insertResult = true;
             this.length++;
+        }else{
+            throw new ListFullException("list is full");
         }
         return insertResult;
     }
@@ -117,30 +139,34 @@ public class CustomLinkedList {
 
     public boolean delete(int index) {
         boolean deleteResult = false;
-        Node iterationNode = this.head;
-        if (index > this.getLength() - 1 || index < 0) {
-            deleteResult = false;
-        } else if (index == 0) {
-            if (this.head != null && this.head.getNext() != null) {
-                this.head = this.head.getNext();
+        if(this.getLength()!=0) {
+            Node iterationNode = this.head;
+            if (index > this.getLength() - 1 || index < 0) {
+                deleteResult = false;
+            } else if (index == 0) {
+                if (this.head != null && this.head.getNext() != null) {
+                    this.head = this.head.getNext();
+                } else {
+                    this.head = null;
+                }
+                deleteResult = true;
+                this.length--;
             } else {
-                this.head = null;
+                int i = 0;
+                while (i < index - 1) {
+                    iterationNode = iterationNode.getNext();
+                    i++;
+                }
+                Node tempNode = iterationNode.getNext();
+                if (tempNode != null) {
+                    tempNode = tempNode.getNext();
+                }
+                iterationNode.setNext(tempNode);
+                deleteResult = true;
+                this.length--;
             }
-            deleteResult = true;
-            this.length--;
-        } else {
-            int i = 0;
-            while (i < index - 1) {
-                iterationNode = iterationNode.getNext();
-                i++;
-            }
-            Node tempNode = iterationNode.getNext();
-            if (tempNode != null) {
-                tempNode = tempNode.getNext();
-            }
-            iterationNode.setNext(tempNode);
-            deleteResult = true;
-            this.length--;
+        }else{
+            throw new EmptyListException("list is empty");
         }
         return deleteResult;
     }
@@ -161,17 +187,17 @@ public class CustomLinkedList {
         return elementToRemove;
     }
 
-    public int removeHead(){
+    public int removeHead() {
         int removedHeadElement;
-        if(this.head == null){
+        if (this.head == null) {
             removedHeadElement = Integer.MIN_VALUE;
             return removedHeadElement;
-        }else if(this.head.getNext()==null){
+        } else if (this.head.getNext() == null) {
             removedHeadElement = this.head.getElement();
-            this.head= null;
-        }else{
+            this.head = null;
+        } else {
             removedHeadElement = this.head.getElement();
-            this.head= this.head.getNext();
+            this.head = this.head.getNext();
         }
         this.length--;
         return removedHeadElement;
