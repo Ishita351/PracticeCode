@@ -20,8 +20,8 @@ public class CustomStackOnCustomLinkedListTest {
 
     }
 
-    @Test(expectedExceptions = EmptyListException.class)
-    public void testCustomStackTop() throws StackFullException {
+    @Test(expectedExceptions = EmptyStackException.class)
+    public void testCustomStackTop() throws StackFullException, EmptyStackException {
         CustomStackOnCustomLinkedList customStackOnCustomLinkedList = new CustomStackOnCustomLinkedList();
         Assert.assertEquals(customStackOnCustomLinkedList.top(), -1);
         customStackOnCustomLinkedList.push(4);

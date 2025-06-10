@@ -1,5 +1,6 @@
 package tech.blueglacier;
 
+import tech.blueglacier.exceptions.EmptyListException;
 import tech.blueglacier.exceptions.EmptyStackException;
 import tech.blueglacier.exceptions.ListFullException;
 import tech.blueglacier.exceptions.StackFullException;
@@ -10,10 +11,11 @@ public class CustomStackOnCustomLinkedList {
 
     public CustomStackOnCustomLinkedList() {
         this.customLinkedList = new CustomLinkedList();
-        this.capacity = Integer.MAX_VALUE ;
+        this.capacity = Integer.MAX_VALUE;
     }
+
     public CustomStackOnCustomLinkedList(int capacity) {
-        this.capacity = capacity ;
+        this.capacity = capacity;
         this.customLinkedList = new CustomLinkedList(this.capacity);
     }
 
@@ -27,11 +29,23 @@ public class CustomStackOnCustomLinkedList {
     }
 
     public int pop() throws EmptyStackException {
-        return this.customLinkedList.removeLast();
+        int poppedValue;
+        try {
+            poppedValue = this.customLinkedList.removeLast();
+        } catch (EmptyListException e) {
+            throw new EmptyStackException(e.getMessage());
+        }
+        return poppedValue;
     }
 
-    public int top() {
-        return this.customLinkedList.read(0);
+    public int top() throws EmptyStackException {
+        int toppedValue;
+        try {
+            toppedValue = this.customLinkedList.read(0);
+        } catch (EmptyListException e) {
+            throw new EmptyStackException(e.getMessage());
+        }
+        return toppedValue;
     }
 
     public int size() {
