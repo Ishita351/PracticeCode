@@ -33,13 +33,8 @@ public class CustomStack<T> {
         T tObj = null;
         try {
             tObj = this.stackArray.removeLast();
-        } catch (NoSuchElementException | NullPointerException e) {
+        } catch (NoSuchElementException e) {
             throw new EmptyStackException(e.getMessage());
-        } catch (Exception e) {
-            System.out.println("exception started from here");
-            throw e;
-        } finally {
-            System.out.println("empty stack action covered");
         }
         return tObj;
     }
