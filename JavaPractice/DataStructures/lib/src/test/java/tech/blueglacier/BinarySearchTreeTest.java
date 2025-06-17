@@ -27,5 +27,35 @@ public class BinarySearchTreeTest {
         BinarySearchTreeNode rootNode = new BinarySearchTreeNode(60);
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         binarySearchTree.insert(rootNode);
+        BinarySearchTreeNode node49 = new BinarySearchTreeNode(49);
+        binarySearchTree.insert(node49);
+        BinarySearchTreeNode node65 = new BinarySearchTreeNode(65);
+        binarySearchTree.insert(node65);
+        BinarySearchTreeNode node46 = new BinarySearchTreeNode(46);
+        binarySearchTree.insert(node46);
+        BinarySearchTreeNode node64 = new BinarySearchTreeNode(64);
+        binarySearchTree.insert(node64);
+        BinarySearchTreeNode node50 = new BinarySearchTreeNode(50);
+        binarySearchTree.insert(node50);
+        BinarySearchTreeNode node70= new BinarySearchTreeNode(70);
+        binarySearchTree.insert(node70);
+    }
+    @Test
+    public void testBinarySearchTreeInsertionMethodRandomOrder() throws IllegalTreeNodeValueException {
+        BinarySearchTreeNode rootNode = new BinarySearchTreeNode(60);
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        binarySearchTree.insert(rootNode);
+        BinarySearchTreeNode node70= new BinarySearchTreeNode(70);
+        binarySearchTree.insert(node70);
+        BinarySearchTreeNode node65 = new BinarySearchTreeNode(65);
+        binarySearchTree.insert(node65);
+        BinarySearchTreeNode node46 = new BinarySearchTreeNode(46);
+        binarySearchTree.insert(node46);
+        BinarySearchTreeNode node64 = new BinarySearchTreeNode(64);
+        binarySearchTree.insert(node64);
+        BinarySearchTreeNode node50 = new BinarySearchTreeNode(50);
+        binarySearchTree.insert(node50);
+        BinarySearchTreeNode node49 = new BinarySearchTreeNode(49);
+        binarySearchTree.insert(node49);
     }
 }

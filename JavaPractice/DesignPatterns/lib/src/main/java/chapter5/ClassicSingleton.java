@@ -15,5 +15,7 @@ public class ClassicSingleton {
         return uniqueInstance;
     }
 }
-//Not thread-safe. If two threads call getInstance() at the same time, they might both create a new object.
-//In multithreaded environments, it can break the Singleton rule.
+/*
+Not thread-safe. If two threads call getInstance() at the same time, they might both create a new object.
+In multithreaded environments, it can break the Singleton rule.
+*/
