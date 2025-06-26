@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 // finding missing numbers in an array where numbers are between 1 to n-1 and one of them is missing
 

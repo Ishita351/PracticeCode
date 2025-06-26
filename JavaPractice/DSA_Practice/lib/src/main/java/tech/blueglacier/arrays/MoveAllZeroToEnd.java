@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 public class MoveAllZeroToEnd {
     public static int[] moveZero(int[] arr) {

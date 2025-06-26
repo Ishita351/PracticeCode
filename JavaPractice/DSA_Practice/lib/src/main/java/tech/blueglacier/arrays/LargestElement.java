@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 public class LargestElement {
     public static void printLargest(int[] arr){

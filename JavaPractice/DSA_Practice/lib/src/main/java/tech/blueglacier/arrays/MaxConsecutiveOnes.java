@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 public class MaxConsecutiveOnes {
     public static int maxOnes(int[] arr) {

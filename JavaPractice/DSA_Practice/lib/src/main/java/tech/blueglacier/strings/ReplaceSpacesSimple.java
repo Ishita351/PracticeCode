@@ -1,4 +1,4 @@
-package Strings;
+package tech.blueglacier.strings;
 
 public class ReplaceSpacesSimple {
     public static String replaceSpaces(String str) {

@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 public class LeftRotateArrayByOne {
     public static int[] rotateArr(int[] arr){

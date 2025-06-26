@@ -28,6 +28,7 @@ public class BinarySearchTree {
         while (iterationNode != null) {
             if (iterationNode.getLeftBinarySearchTreeNode() == null && iterationNode.getBinarySearchTreeNodeValue() > binarySearchTreeNode.getBinarySearchTreeNodeValue()) {
                 iterationNode.setLeftBinarySearchTreeNode(binarySearchTreeNode);
+                binarySearchTreeNode.setParentBinarySearchTreeNode(iterationNode);
                 break;
             } else if (binarySearchTreeNode.getBinarySearchTreeNodeValue() < iterationNode.getBinarySearchTreeNodeValue() && iterationNode.getLeftBinarySearchTreeNode() != null) {
                 iterationNode = iterationNode.getLeftBinarySearchTreeNode();
@@ -35,6 +36,7 @@ public class BinarySearchTree {
             }
             if (iterationNode.getRightBinarySearchTreeNode() == null && iterationNode.getBinarySearchTreeNodeValue() <= binarySearchTreeNode.getBinarySearchTreeNodeValue()) {
                 iterationNode.setRightBinarySearchTreeNode(binarySearchTreeNode);
+                binarySearchTreeNode.setParentBinarySearchTreeNode(iterationNode);
                 break;
             } else if (binarySearchTreeNode.getBinarySearchTreeNodeValue() >= iterationNode.getBinarySearchTreeNodeValue() && iterationNode.getRightBinarySearchTreeNode() != null) {
                 iterationNode = iterationNode.getRightBinarySearchTreeNode();
@@ -66,5 +68,52 @@ public class BinarySearchTree {
             traversedData.add(iterationNode.getBinarySearchTreeNodeValue());
         }
     }
+
+    public BinarySearchTreeNode treeSearchRecursive(int key, BinarySearchTreeNode iterationNode) {
+        if (iterationNode == null || iterationNode.getBinarySearchTreeNodeValue() == key) {
+            return iterationNode;
+        }
+        if (key < iterationNode.getBinarySearchTreeNodeValue()) {
+            return this.treeSearchRecursive(key, iterationNode.getLeftBinarySearchTreeNode());
+        } else {
+            return this.treeSearchRecursive(key, iterationNode.getRightBinarySearchTreeNode());
+        }
+    }
+
+    public BinarySearchTreeNode treeSearchIterative(int key, BinarySearchTreeNode iterationNode) {
+        while (iterationNode != null && iterationNode.getBinarySearchTreeNodeValue() != key) {
+            if (key < iterationNode.getBinarySearchTreeNodeValue()) {
+                iterationNode = iterationNode.getLeftBinarySearchTreeNode();
+            } else {
+                iterationNode = iterationNode.getRightBinarySearchTreeNode();
+            }
+        }
+        return iterationNode;
+    }
+
+    public BinarySearchTreeNode getBinarySearchTreeMinimum(BinarySearchTreeNode binarySearchTreeNode) {
+        BinarySearchTreeNode iterationNode = binarySearchTreeNode;
+        while (iterationNode.getLeftBinarySearchTreeNode() != null) {
+            iterationNode = iterationNode.getLeftBinarySearchTreeNode();
+        }
+        return iterationNode;
+    }
+
+    public BinarySearchTreeNode getBinarySearchTreeMaximum(){
+        BinarySearchTreeNode iterationNode = this.getRootNode();
+        while(iterationNode.getRightBinarySearchTreeNode() != null){
+            iterationNode= iterationNode.getRightBinarySearchTreeNode();
+        }
+        return iterationNode;
+    }
+
+    /*public BinarySearchTreeNode getBinarySearchTreeSuccessor(BinarySearchTreeNode binarySearchTreeNode){
+        BinarySearchTreeNode iterationNode = this.getRootNode();
+        if(binarySearchTreeNode.getRightBinarySearchTreeNode() != null){
+            return getBinarySearchTreeMinimum(binarySearchTreeNode.getRightBinarySearchTreeNode());
+        }else{
+
+        }
+    }*/
 }
 

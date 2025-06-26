@@ -6,6 +6,7 @@ public class BinarySearchTreeNode {
     private int binarySearchTreeNodeValue;
     private BinarySearchTreeNode leftBinarySearchTreeNode;
     private BinarySearchTreeNode rightBinarySearchTreeNode;
+    private BinarySearchTreeNode parentBinarySearchTreeNode;
 
     public BinarySearchTreeNode(int binarySearchTreeNodeValue) {
         this.binarySearchTreeNodeValue = binarySearchTreeNodeValue;
@@ -15,10 +16,6 @@ public class BinarySearchTreeNode {
         return binarySearchTreeNodeValue;
     }
 
-    /*public void setBinarySearchTreeNodeValue(int binarySearchTreeNodeValue) {
-        this.binarySearchTreeNodeValue = binarySearchTreeNodeValue;
-    }
-*/
     public BinarySearchTreeNode getLeftBinarySearchTreeNode() {
         return leftBinarySearchTreeNode;
     }
@@ -32,7 +29,6 @@ public class BinarySearchTreeNode {
 
     }
 
-
     public BinarySearchTreeNode getRightBinarySearchTreeNode() {
         return rightBinarySearchTreeNode;
     }
@@ -44,4 +40,13 @@ public class BinarySearchTreeNode {
             throw new IllegalTreeNodeValueException("right node is smaller");
         }
     }
+
+    public BinarySearchTreeNode getParentBinarySearchTreeNode() {
+        return parentBinarySearchTreeNode;
+    }
+
+    public void setParentBinarySearchTreeNode(BinarySearchTreeNode parentBinarySearchTreeNode) {
+        this.parentBinarySearchTreeNode = parentBinarySearchTreeNode;
+    }
+
 }

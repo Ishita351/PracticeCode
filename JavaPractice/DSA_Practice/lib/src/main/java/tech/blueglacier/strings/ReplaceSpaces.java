@@ -1,4 +1,4 @@
-package Strings;
+package tech.blueglacier.strings;
 
 // replace spaces " " of a string with "%20"
 

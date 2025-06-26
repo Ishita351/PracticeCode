@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 import java.util.HashSet;
 

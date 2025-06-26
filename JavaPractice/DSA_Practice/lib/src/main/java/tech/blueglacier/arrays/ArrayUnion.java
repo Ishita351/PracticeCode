@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 // union of 2 sorted arrays
 // brute : using HashSet

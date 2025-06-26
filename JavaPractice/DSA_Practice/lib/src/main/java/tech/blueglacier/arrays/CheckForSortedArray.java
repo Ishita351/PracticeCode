@@ -1,4 +1,4 @@
-package Arrays;
+package tech.blueglacier.arrays;
 
 public class CheckForSortedArray {
     public static boolean isSorted(int[] arr){
