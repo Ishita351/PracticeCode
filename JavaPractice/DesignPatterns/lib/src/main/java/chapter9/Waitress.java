@@ -2,6 +2,7 @@ package chapter9;
 import java.util.Iterator;
 
 //This is the main user of everything.
+//The class that prints the menu and also vegetarian items.
 
 public class Waitress {
     MenuComponent allMenus;
@@ -19,8 +20,12 @@ public class Waitress {
         System.out.println("VEGETARIAN MENU:");
         while (iterator.hasNext()) {
             MenuComponent component = iterator.next();
-            if (component.isVegetarian()) {
-                component.print();
+            try {
+                if (component.isVegetarian()) {
+                    component.print();
+                }
+            } catch (UnsupportedOperationException e) {
+                // Safe to ignore for Menu types
             }
         }
     }
