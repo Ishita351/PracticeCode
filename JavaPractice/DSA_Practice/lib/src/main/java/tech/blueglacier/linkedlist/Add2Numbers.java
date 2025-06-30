@@ -40,11 +40,3 @@ public class Add2Numbers {
     }
 }
 
-/*class LinkedList<Integer>{
-    int data ;
-    LinkedList<Integer> next;
-    LinkedList<Integer>(int data){
-        this.data = data;
-    }
-}
-*/
