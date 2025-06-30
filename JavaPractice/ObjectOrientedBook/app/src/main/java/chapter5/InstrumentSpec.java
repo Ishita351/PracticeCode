@@ -27,6 +27,6 @@ public abstract class InstrumentSpec {
         if (builder != otherSpec.builder) return false;
         if ((model != null) && (!model.equals("") && !model.equalsIgnoreCase(otherSpec.model))) return false;
         if (type != otherSpec.type) return false;
-        return false;
+        return true;
     }
 }
