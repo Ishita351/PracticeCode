@@ -108,34 +108,42 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testBinarySearchTreePreorderTraversal() throws IllegalTreeNodeValueException {
+        int testTreeOrderArray[] = {60, 49, 46, 50, 65, 64, 70};
         BinarySearchTree binarySearchTree = this.getBinarySearchTree();
         List<Integer> traversedData = new ArrayList<>();
         binarySearchTree.preorderTraversal(traversedData, binarySearchTree.getRootNode());
-        System.out.println(traversedData);
+        int[] preOrderTraversalArray = traversedData.stream().mapToInt(Integer::intValue).toArray();
+        Assert.assertEquals(preOrderTraversalArray, testTreeOrderArray);
     }
 
     @Test
     public void testRandomBinarySearchTreePreorderTraversal() throws IllegalTreeNodeValueException {
+        int testTreeOrderArray[] = {60, 46, 50, 49, 70, 65, 64};
         BinarySearchTree binarySearchTree = this.getBinarySearchTreeRandomOrder();
         List<Integer> traversedData = new ArrayList<>();
         binarySearchTree.preorderTraversal(traversedData, binarySearchTree.getRootNode());
-        System.out.println(traversedData);
+        int[] preOrderTraversalArray = traversedData.stream().mapToInt(Integer::intValue).toArray();
+        Assert.assertEquals(preOrderTraversalArray, testTreeOrderArray);
     }
 
     @Test
     public void testBinarySearchTreePostorderTraversal() throws IllegalTreeNodeValueException {
+        int testTreeOrderArray[] = {46, 50, 49, 64, 70, 65, 60};
         BinarySearchTree binarySearchTree = this.getBinarySearchTree();
         List<Integer> traversedData = new ArrayList<>();
         binarySearchTree.postorderTraversal(traversedData, binarySearchTree.getRootNode());
-        System.out.println(traversedData);
+        int[] postOrderTraversalArray = traversedData.stream().mapToInt(Integer::intValue).toArray();
+        Assert.assertEquals(postOrderTraversalArray, testTreeOrderArray);
     }
 
     @Test
     public void testRandomBinarySearchTreePostorderTraversal() throws IllegalTreeNodeValueException {
+        int testTreeOrderArray[] = {49, 50, 46, 64, 65, 70, 60};
         BinarySearchTree binarySearchTree = this.getBinarySearchTreeRandomOrder();
         List<Integer> traversedData = new ArrayList<>();
         binarySearchTree.postorderTraversal(traversedData, binarySearchTree.getRootNode());
-        System.out.println(traversedData);
+        int[] postOrderTraversalArray = traversedData.stream().mapToInt(Integer::intValue).toArray();
+        Assert.assertEquals(postOrderTraversalArray, testTreeOrderArray);
     }
 
     @Test
@@ -176,8 +184,35 @@ public class BinarySearchTreeTest {
     @Test
     public void testBinarySearchTreeMaximumValue() throws IllegalTreeNodeValueException {
         BinarySearchTree binarySearchTree = this.getBinarySearchTree();
-        BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreeMaximum();
+        BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreeMaximum(binarySearchTree.getRootNode());
         Assert.assertEquals(binarySearchTreeNode.getBinarySearchTreeNodeValue(), 70);
     }
 
+    @Test
+    public void testBinarySearchTreeSuccessor() throws IllegalTreeNodeValueException {
+        BinarySearchTree binarySearchTree = this.getBinarySearchTree();
+        BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreeSuccessor(binarySearchTree.getRootNode().getRightBinarySearchTreeNode());
+        Assert.assertEquals(binarySearchTreeNode.getBinarySearchTreeNodeValue(), 70);
+    }
+
+    @Test
+    public void testBinarySearchTreeSuccessor2() throws IllegalTreeNodeValueException {
+        BinarySearchTree binarySearchTree = this.getBinarySearchTree();
+        BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreeSuccessor(binarySearchTree.getRootNode().getLeftBinarySearchTreeNode().getRightBinarySearchTreeNode());
+        Assert.assertEquals(binarySearchTreeNode.getBinarySearchTreeNodeValue(), 60);
+    }
+
+    @Test
+    public void testBinarySearchTreePredecessor() throws IllegalTreeNodeValueException {
+        BinarySearchTree binarySearchTree = this.getBinarySearchTree();
+        BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreePredecessor(binarySearchTree.getRootNode().getRightBinarySearchTreeNode());
+        Assert.assertEquals(binarySearchTreeNode.getBinarySearchTreeNodeValue(), 64);
+    }
+
+    @Test
+    public void testBinarySearchTreePredecessor2() throws IllegalTreeNodeValueException {
+        BinarySearchTree binarySearchTree = this.getBinarySearchTree();
+        BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreePredecessor(binarySearchTree.getRootNode().getRightBinarySearchTreeNode().getLeftBinarySearchTreeNode());
+        Assert.assertEquals(binarySearchTreeNode.getBinarySearchTreeNodeValue(), 60);
+    }
 }

@@ -26,19 +26,23 @@ public class BinarySearchTree {
         }
         BinarySearchTreeNode iterationNode = this.rootNode;
         while (iterationNode != null) {
-            if (iterationNode.getLeftBinarySearchTreeNode() == null && iterationNode.getBinarySearchTreeNodeValue() > binarySearchTreeNode.getBinarySearchTreeNodeValue()) {
+            if (iterationNode.getLeftBinarySearchTreeNode() == null &&
+                    iterationNode.getBinarySearchTreeNodeValue() > binarySearchTreeNode.getBinarySearchTreeNodeValue()) {
                 iterationNode.setLeftBinarySearchTreeNode(binarySearchTreeNode);
                 binarySearchTreeNode.setParentBinarySearchTreeNode(iterationNode);
                 break;
-            } else if (binarySearchTreeNode.getBinarySearchTreeNodeValue() < iterationNode.getBinarySearchTreeNodeValue() && iterationNode.getLeftBinarySearchTreeNode() != null) {
+            } else if (binarySearchTreeNode.getBinarySearchTreeNodeValue() < iterationNode.getBinarySearchTreeNodeValue() &&
+                    iterationNode.getLeftBinarySearchTreeNode() != null) {
                 iterationNode = iterationNode.getLeftBinarySearchTreeNode();
                 continue;
             }
-            if (iterationNode.getRightBinarySearchTreeNode() == null && iterationNode.getBinarySearchTreeNodeValue() <= binarySearchTreeNode.getBinarySearchTreeNodeValue()) {
+            if (iterationNode.getRightBinarySearchTreeNode() == null &&
+                    iterationNode.getBinarySearchTreeNodeValue() <= binarySearchTreeNode.getBinarySearchTreeNodeValue()) {
                 iterationNode.setRightBinarySearchTreeNode(binarySearchTreeNode);
                 binarySearchTreeNode.setParentBinarySearchTreeNode(iterationNode);
                 break;
-            } else if (binarySearchTreeNode.getBinarySearchTreeNodeValue() >= iterationNode.getBinarySearchTreeNodeValue() && iterationNode.getRightBinarySearchTreeNode() != null) {
+            } else if (binarySearchTreeNode.getBinarySearchTreeNodeValue() >= iterationNode.getBinarySearchTreeNodeValue() &&
+                    iterationNode.getRightBinarySearchTreeNode() != null) {
                 iterationNode = iterationNode.getRightBinarySearchTreeNode();
                 continue;
             }
@@ -99,21 +103,41 @@ public class BinarySearchTree {
         return iterationNode;
     }
 
-    public BinarySearchTreeNode getBinarySearchTreeMaximum(){
-        BinarySearchTreeNode iterationNode = this.getRootNode();
-        while(iterationNode.getRightBinarySearchTreeNode() != null){
-            iterationNode= iterationNode.getRightBinarySearchTreeNode();
+    public BinarySearchTreeNode getBinarySearchTreeMaximum(BinarySearchTreeNode binarySearchTreeNode) {
+        BinarySearchTreeNode iterationNode = binarySearchTreeNode;
+        while (iterationNode.getRightBinarySearchTreeNode() != null) {
+            iterationNode = iterationNode.getRightBinarySearchTreeNode();
         }
         return iterationNode;
     }
 
-    /*public BinarySearchTreeNode getBinarySearchTreeSuccessor(BinarySearchTreeNode binarySearchTreeNode){
-        BinarySearchTreeNode iterationNode = this.getRootNode();
-        if(binarySearchTreeNode.getRightBinarySearchTreeNode() != null){
+    public BinarySearchTreeNode getBinarySearchTreeSuccessor(BinarySearchTreeNode binarySearchTreeNode) {
+        BinarySearchTreeNode iterationNode = binarySearchTreeNode;
+        if (binarySearchTreeNode.getRightBinarySearchTreeNode() != null) {
             return getBinarySearchTreeMinimum(binarySearchTreeNode.getRightBinarySearchTreeNode());
-        }else{
-
+        } else {
+            iterationNode = binarySearchTreeNode.getParentBinarySearchTreeNode();
+            while (iterationNode != null && binarySearchTreeNode == iterationNode.getRightBinarySearchTreeNode()) {
+                binarySearchTreeNode = iterationNode;
+                iterationNode = iterationNode.getParentBinarySearchTreeNode();
+            }
+            return iterationNode;
         }
-    }*/
+    }
+
+    public BinarySearchTreeNode getBinarySearchTreePredecessor(BinarySearchTreeNode binarySearchTreeNode) {
+        BinarySearchTreeNode iterationNode = binarySearchTreeNode;
+        if (binarySearchTreeNode.getLeftBinarySearchTreeNode() != null) {
+            return getBinarySearchTreeMaximum(binarySearchTreeNode.getLeftBinarySearchTreeNode());
+        } else {
+            iterationNode = binarySearchTreeNode.getParentBinarySearchTreeNode();
+            while (iterationNode != null && binarySearchTreeNode == iterationNode.getLeftBinarySearchTreeNode()) {
+                binarySearchTreeNode = iterationNode;
+                iterationNode = iterationNode.getParentBinarySearchTreeNode();
+            }
+            return iterationNode;
+        }
+    }
+
 }
 
