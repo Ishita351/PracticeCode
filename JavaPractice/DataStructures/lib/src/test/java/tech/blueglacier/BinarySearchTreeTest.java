@@ -215,4 +215,16 @@ public class BinarySearchTreeTest {
         BinarySearchTreeNode binarySearchTreeNode = binarySearchTree.getBinarySearchTreePredecessor(binarySearchTree.getRootNode().getRightBinarySearchTreeNode().getLeftBinarySearchTreeNode());
         Assert.assertEquals(binarySearchTreeNode.getBinarySearchTreeNodeValue(), 60);
     }
+
+    @Test
+    public void testBinarySearchTreeDelete() throws IllegalTreeNodeValueException {
+        BinarySearchTree binarySearchTree = this.getBinarySearchTree();
+        List<Integer> list = new ArrayList<>();
+        binarySearchTree.inorderTraversal(list, binarySearchTree.getRootNode());
+        System.out.println(list);
+        binarySearchTree.deleteBinarySearchTree(binarySearchTree.getRootNode().getLeftBinarySearchTreeNode().getRightBinarySearchTreeNode());
+        list.clear();
+        binarySearchTree.inorderTraversal(list, binarySearchTree.getRootNode());
+        System.out.println(list);
+    }
 }

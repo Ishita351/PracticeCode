@@ -139,5 +139,40 @@ public class BinarySearchTree {
         }
     }
 
+    public void transplantBinarySearchTree(BinarySearchTreeNode targetForReplacementU, BinarySearchTreeNode targetV) throws IllegalTreeNodeValueException {
+        if (targetForReplacementU.getParentBinarySearchTreeNode() == null) {
+            this.rootNode = targetV;
+        } else if (targetForReplacementU == targetForReplacementU.getParentBinarySearchTreeNode().getLeftBinarySearchTreeNode()) {
+            targetForReplacementU.getParentBinarySearchTreeNode().setLeftBinarySearchTreeNode(targetV);
+        } else {
+            if (targetForReplacementU != null &&
+                    targetForReplacementU.getParentBinarySearchTreeNode() != null &&
+                    targetV != null) {
+                targetForReplacementU.getParentBinarySearchTreeNode().setRightBinarySearchTreeNode(targetV);
+            }
+        }
+        if (targetV != null) {
+            targetV.setParentBinarySearchTreeNode(targetForReplacementU.getParentBinarySearchTreeNode());
+        }
+    }
+
+    public void deleteBinarySearchTree(BinarySearchTreeNode nodeToDeleteZ) throws IllegalTreeNodeValueException {
+        if (nodeToDeleteZ.getLeftBinarySearchTreeNode() == null) {
+            transplantBinarySearchTree(nodeToDeleteZ, nodeToDeleteZ.getRightBinarySearchTreeNode());
+        } else if (nodeToDeleteZ.getRightBinarySearchTreeNode() == null) {
+            transplantBinarySearchTree(nodeToDeleteZ, nodeToDeleteZ.getLeftBinarySearchTreeNode());
+        } else {
+            BinarySearchTreeNode successorToNodeToDeleteZ_Y = this.getBinarySearchTreeMinimum(nodeToDeleteZ.getRightBinarySearchTreeNode());
+            if (successorToNodeToDeleteZ_Y != nodeToDeleteZ.getRightBinarySearchTreeNode()) {
+                transplantBinarySearchTree(successorToNodeToDeleteZ_Y, successorToNodeToDeleteZ_Y.getRightBinarySearchTreeNode());
+                successorToNodeToDeleteZ_Y.setRightBinarySearchTreeNode(nodeToDeleteZ.getRightBinarySearchTreeNode());
+                successorToNodeToDeleteZ_Y.getRightBinarySearchTreeNode().setParentBinarySearchTreeNode(successorToNodeToDeleteZ_Y);
+            }
+            transplantBinarySearchTree(nodeToDeleteZ, successorToNodeToDeleteZ_Y);
+            successorToNodeToDeleteZ_Y.setLeftBinarySearchTreeNode(nodeToDeleteZ.getLeftBinarySearchTreeNode());
+            successorToNodeToDeleteZ_Y.getLeftBinarySearchTreeNode().setParentBinarySearchTreeNode(successorToNodeToDeleteZ_Y);
+        }
+    }
+
 }
 
