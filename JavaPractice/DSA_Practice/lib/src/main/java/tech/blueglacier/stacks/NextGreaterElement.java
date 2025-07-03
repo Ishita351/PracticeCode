@@ -12,7 +12,7 @@ public class NextGreaterElement {
                 st.pop();
             }
             if(st.isEmpty()){
-                ansList[i] = -1;
+                ansList[i] = n;
             }else{
                 ansList[i] = st.peek();
             }
@@ -20,4 +20,24 @@ public class NextGreaterElement {
         }
         return ansList;
     }
+    public static int[] findNGEIndexes(int[] arr) {
+        int n = arr.length;
+        int[] ans = new int[n];
+        Stack<Integer> st = new Stack<>(); // Stack stores indices
+
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.isEmpty() && arr[st.peek()] <= arr[i]) {
+                st.pop();
+            }
+            if (st.isEmpty()) {
+                ans[i] = n;  // No greater element → use n as sentinel index
+            } else {
+                ans[i] = st.peek();  // Index of next greater element
+            }
+            st.push(i); // Push current index
+        }
+
+        return ans;
+    }
+
 }

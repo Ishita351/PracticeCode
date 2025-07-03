@@ -3,7 +3,7 @@ package tech.blueglacier.stacks;
 import java.util.Stack;
 
 public class PreviousSmallerElement {
-    public int[] findPSE(int[] arr){
+    public static int[] findPSE(int[] arr){ // returns list of values
         int n = arr.length;
         int ans[] = new int[n];
         Stack<Integer> st = new Stack<>();
@@ -20,4 +20,20 @@ public class PreviousSmallerElement {
         }
         return ans;
     }
+
+    public static int[] findPSEIndexes(int[] arr){ // retuens list of indexes
+        int n = arr.length;
+        int[] ans = new int[n];
+        Stack<Integer> st = new Stack<>(); // Stack of indices
+
+        for(int i = 0; i < n; i++) {
+            while (!st.isEmpty() && arr[st.peek()] >= arr[i]) {
+                st.pop();
+            }
+            ans[i] = st.isEmpty() ? -1 : st.peek();
+            st.push(i); // push index
+        }
+        return ans;
+    }
+
 }
