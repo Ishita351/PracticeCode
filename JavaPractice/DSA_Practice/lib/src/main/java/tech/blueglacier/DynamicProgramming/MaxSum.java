@@ -4,7 +4,6 @@ package tech.blueglacier.DynamicProgramming;
 
 public class MaxSum {
     public int returnMaxSumOfElements(int[] arr){
-
         int n = arr.length;
         int prev1 = arr[0];
         int prev2 = 0;
